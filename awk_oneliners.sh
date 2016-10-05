@@ -16,3 +16,12 @@ awk '{ sum += $1 } END { print sum }'
 
 # sd of $1
 awk '{ sum += $1; array[NR] = $1 } END { for ( x=1; x <= NR; x++ ){ sumsq += (( array[x] - (sum/NR))**2); } print sqrt( sumsq/NR)}'
+
+# convert fastq to fasta
+awk '{if(NR%4==1) {printf(">%s\n",substr($0,2));} else if(NR%4==2) print;}'
+
+# print matched row +1 after it
+awk '/<pattern>/{nr[NR]; nr[NR+1]}; NR in nr'
+
+# delete string after character
+awk 'BEGIN{FS=OFS="<separator>"} NF--'
