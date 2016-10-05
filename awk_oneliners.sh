@@ -25,3 +25,6 @@ awk '/<pattern>/{nr[NR]; nr[NR+1]}; NR in nr'
 
 # delete string after character
 awk 'BEGIN{FS=OFS="<separator>"} NF--'
+
+# revert newline from 60nt formatted fasta file
+awk '/^>/{print s? s"\n"$0:$0;s="";next}{s=s sprintf("%s",$0)}END{if(s)print s}'
