@@ -32,6 +32,9 @@ awk 'BEGIN{FS=OFS="<separator>"} NF--'
 # revert newline from 60nt formatted fasta file
 awk '/^>/{print s? s"\n"$0:$0;s="";next}{s=s sprintf("%s",$0)}END{if(s)print s}'
 
+# get fasta sequence length from multifasta file
+awk '/^>/ {if (seqlen){print seqlen}; print ;seqlen=0;next; } { seqlen += length($0)}END{print seqlen}'
+
 # search and replace in multiple files
 find . -type f -name "taget_file" -exec sed -i '' -e 's:<from>:<to>:g' {} +
 
