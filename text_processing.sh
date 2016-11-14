@@ -35,11 +35,11 @@ awk '/^>/{print s? s"\n"$0:$0;s="";next}{s=s sprintf("%s",$0)}END{if(s)print s}'
 # search and replace in multiple files
 find . -type f -name "taget_file" -exec sed -i '' -e 's:<from>:<to>:g' {} +
 
-# "grep" pattern on one column
+# "grep" pattern on $1
 awk '{if ($1 == "<pattern>") print $0;}'
 
-# duplicate count on one column
+# duplicate count on $1
 awk '{print $1}' | sort | uniq -dc
 
-# print non-duplicate elements on one column 
+# print non-duplicate elements in $1
 awk '!seen[$1]++'
