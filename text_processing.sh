@@ -32,4 +32,5 @@ awk '/^>/{print s? s"\n"$0:$0;s="";next}{s=s sprintf("%s",$0)}END{if(s)print s}'
 # search and replace in multiple files
 find . -type f -name "taget_file" -exec sed -i '' -e 's:<from>:<to>:g' {} +
 
-
+# "grep" pattern on one column
+awk '{if ($3 == "<pattern>") print $0;}'
