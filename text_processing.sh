@@ -33,4 +33,10 @@ awk '/^>/{print s? s"\n"$0:$0;s="";next}{s=s sprintf("%s",$0)}END{if(s)print s}'
 find . -type f -name "taget_file" -exec sed -i '' -e 's:<from>:<to>:g' {} +
 
 # "grep" pattern on one column
-awk '{if ($3 == "<pattern>") print $0;}'
+awk '{if ($1 == "<pattern>") print $0;}'
+
+# duplicate count on one column
+awk '{print $1}' | sort | uniq -dc
+
+# print non-duplicate elements on one column 
+awk '!seen[$1]++'
