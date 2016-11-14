@@ -5,6 +5,9 @@ awk '{<stuff>}' infile > outfile # write to output
 # average of $1 
 awk '{ sum += $1; n++ } END { if (n > 0) print sum / n; }'
 
+# median of $1 (on sort -n file)
+awk ' { a[i++]=$1; } END { print a[int(i/2)]; }'
+
 # min element of $1
 awk 'BEGIN { a=1000 } { if ($1 < 0+a ) a=$1 } END { print a }'
 
