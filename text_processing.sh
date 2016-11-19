@@ -46,3 +46,6 @@ awk '{print $1}' | sort | uniq -dc
 
 # print non-duplicate elements in $1
 awk '!seen[$1]++'
+
+# calculate how many characters per row in $1
+awk '{ print length($1); }'
