@@ -49,3 +49,6 @@ awk '!seen[$1]++'
 
 # calculate how many characters per row in $1
 awk '{ print length($1); }'
+
+# text replacement in $1 if value bigger than <threshold_value> with <replacement_value>
+awk '{ if ($1 > <threshold_value>){$1 = <replacement_value>}}'
