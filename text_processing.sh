@@ -1,7 +1,3 @@
-# syntax 
-cat infile | awk '{<stuff>}' # test stdout
-awk '{<stuff>}' infile > outfile # write to output
-
 # average of $1 
 awk '{ sum += $1; n++ } END { if (n > 0) print sum / n; }'
 
@@ -52,3 +48,27 @@ awk '{ print length($1); }'
 
 # text replacement in $1 if value bigger than <threshold_value> with <replacement_value>
 awk '{ if ($1 > <threshold_value>){$1 = <replacement_value>}}'
+
+# move last line of file to top (header)
+sed '1h;1d;$!H;$!d;G'
+
+# replace pattern1 with pattern2
+sed 's/<pattern1>/<pattern2>/g'
+
+# length of $1
+awk '{print length($1)}'
+
+# replace item greater than threshold value with replacement value
+awk '{ if ($1><threshold>) {$1=<replacement>}}'
+
+# cut the first field of a string
+cut -d'<separator>' -f1
+
+# cut last field of a string
+rev | cut -d'<separator>' -f1 | rev
+
+# replace values in $1 with arithmetic combinations of other columns (e.g, 1/$2)
+awk '{$1= ($1=='<value_to_replace>' ? 1/$2 : $1)}1'
+
+# split to files by column content (e.g, rows with the same value in $1 will be printed to separated files)
+awk '{print > 'outfile_'$1}'
