@@ -19,6 +19,9 @@ awk '{ sum += $1; array[NR] = $1 } END { for ( x=1; x <= NR; x++ ){ sumsq += (( 
 # convert fastq to fasta
 awk '{if(NR%4==1) {printf(">%s\n",substr($0,2));} else if(NR%4==2) print;}'
 
+# sum of sequences in fastq
+awk '/@/{getline; print}' | tr -d '\n' | wc -c
+
 # print matched row +1 after it
 awk '/<pattern>/{nr[NR]; nr[NR+1]}; NR in nr'
 
