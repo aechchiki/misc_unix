@@ -6,7 +6,13 @@
 find . -type d | cpio -pdumv </target_folder/>
 ```
 
+** Make temporary directory ** Create a dir with a random name; enter it and remove it afterwards
 
+```sh
+cd $(mktemp -d -p .)
+# some operations inside
+rmdir $(pwd)
+```
 
 # Environmental variables
 
